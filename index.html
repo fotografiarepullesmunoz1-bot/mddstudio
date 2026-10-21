@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#161616">
+  <meta name="description" content="MDD Studio — fotografía y vídeo. Galerías de motor, eventos y fotografía deportiva.">
+  <title>MDD Studio — Galería fotográfica y vídeo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="img/logo-blanco.png">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="MDD Studio, inicio"><img src="img/logo-blanco.png" alt="MDD Studio" class="brand-logo"></a>
+    <nav><a href="#galerias">Galería</a><a href="#sobre-mi">Sobre mí</a><a class="nav-admin" href="admin.html">Acceso fotógrafo ↗</a></nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="eyebrow-line"></span> FOTOGRAFÍA · VÍDEO · MOTOR · EVENTOS</p>
+        <h1>La emoción<br><em>enfocada</em> en cada instante.</h1>
+        <p class="hero-text">De la tierra al asfalto, de los eventos a los momentos espontáneos. Capturamos la acción, la energía y las historias tal como suceden. Encuentra tus fotografías y descarga tus favoritas en calidad original.</p>
+        <a class="button button-light" href="#galerias">Explorar fotografías <span>↓</span></a>
+      </div>
+      <div class="hero-image">
+        <div class="hero-image-shade"></div>
+        <div class="hero-caption"><span>01 / EN MOVIMIENTO</span><span>CAPTURAR EL INSTANTE</span></div>
+      </div>
+      <div class="hero-index">REPULLÉS MUÑOZ — 2026</div>
+    </section>
+
+    <section class="gallery-section" id="galerias">
+      <div class="section-heading">
+        <div><p class="eyebrow">EL ARCHIVO VISUAL</p><h2 id="galleryTitle">Galerías<span class="dot">.</span></h2></div>
+        <p class="section-note">Explora nuestros eventos, encuentra tus fotos<br>y descárgalas sin registro.</p>
+      </div>
+
+      <div class="filters">
+        <label class="search-wrap"><span>⌕</span><input id="searchInput" type="search" placeholder="Buscar galería, dorsal o título…" autocomplete="off"></label>
+                <span id="photoCount" class="photo-count">Cargando fotos…</span>
+      </div>
+
+      <button id="backBtn" class="back-btn hidden" type="button">← Todas las galerías</button>
+      <div id="status" class="status"><span class="loader"></span> Preparando la galería…</div>
+      <div id="albumGrid" class="album-grid"></div>
+      <div id="photoGrid" class="photo-grid hidden"></div>
+      <div id="emptyState" class="empty-state hidden"><span>◌</span><h3>Todavía no hay fotografías</h3><p>Vuelve pronto: aquí aparecerán las nuevas galerías.</p></div>
+    </section>
+
+    <section class="about" id="sobre-mi">
+      <div class="about-label">DETRÁS DE LA CÁMARA</div>
+      <div><p class="eyebrow">SOBRE NOSOTROS</p><h2>MDD<br>Studio</h2></div>
+      <div class="about-copy">
+        <p>MDD Studio nace de la pasión de cuatro jóvenes, Mario, David, David y Miguel, por el mundo de la fotografía y el vídeo. Compartimos una misma inquietud: capturar momentos, contar historias y crear imágenes capaces de transmitir emociones.</p>
+        <p>Este proyecto surge de nuestras ganas de aprender, experimentar y crecer dentro del mundo audiovisual, convirtiendo una pasión en algo que queremos compartir con los demás. Cada sesión, cada evento y cada proyecto es una nueva oportunidad para descubrir nuevas formas de mirar y de contar lo que ocurre delante de nuestra cámara.</p>
+        <p>En MDD Studio buscamos que cada fotografía tenga algo especial. Nos gusta cuidar los detalles, jugar con la luz, las composiciones y las emociones para conseguir un resultado que no solo sea bonito, sino que cuente una historia y conserve un recuerdo.</p>
+        <p>Somos un equipo joven, creativo y en constante evolución, con muchas ganas de seguir aprendiendo y afrontar nuevos retos. Para nosotros, la fotografía no es simplemente hacer una foto: es detener el tiempo y convertir un instante en algo que pueda permanecer para siempre.</p>
+        <a class="text-link" href="https://www.instagram.com/mddstudio26/" target="_blank" rel="noopener noreferrer">Síguenos en Instagram ↗</a>
+        <p><a class="text-link" href="mailto:mddstudio26@gmail.com">mddstudio26@gmail.com ↗</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer"><a class="brand footer-brand" href="./"><img src="img/logo-blanco.png" alt="MDD Studio" class="brand-logo"></a><span>© <span id="year"></span> MDD Studio · Fotografía y vídeo · Todos los derechos reservados</span><a href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">Volver arriba ↑</a></footer>
+
+  <div id="lightbox" class="lightbox hidden" role="dialog" aria-modal="true" aria-label="Vista de fotografía">
+    <button id="closeLightbox" class="lightbox-close" aria-label="Cerrar">×</button>
+    <button id="prevPhoto" class="lightbox-arrow lightbox-prev" aria-label="Fotografía anterior">‹</button>
+    <div class="lightbox-content"><img id="lightboxImage" alt=""><div class="lightbox-details"><div><p id="lightboxEvent" class="eyebrow"></p><h3 id="lightboxTitle"></h3><p id="lightboxDorsal" class="muted"></p></div><a id="lightboxDownload" class="button button-light" href="#" target="_blank" rel="noopener">Descargar original ↓</a></div></div>
+    <button id="nextPhoto" class="lightbox-arrow lightbox-next" aria-label="Fotografía siguiente">›</button>
+  </div>
+
+  <script src="gallery.js"></script>
+</body>
+</html>
